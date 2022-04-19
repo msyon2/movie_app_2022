@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import Movie from "./Movie";
+import "./App.css";
 
 //동적 data uses class & state
 class App extends React.Component {
@@ -14,24 +16,44 @@ class App extends React.Component {
       data: {
         data: { movies },
       },
-    } = await axios.get("https://yts-proxy.now.sh/list_movies.json");
+    } = await axios.get(
+      "https://yts-proxy.now.sh/list_movies.json?sort_by=rating"
+    );
     //axios functions same as fetch in js
     //console.log(movies.data.data.movies[0].title);
-    this.setState({ movies , isLoading: false });
+    this.setState({ movies, isLoading: false });
     //this.setSate({ movies: movies });
-       //if the name of key & value are the same, you can write once
+    //if the name of key & value are the same, you can write once
   };
   componentDidMount() {
     this.getMovies();
   }
   render() {
-    const { isLoading } = this.state;
+    const { isLoading, movies } = this.state;
 
     return (
-      <div>
-        {isLoading ? "Loading..." : "Loaded"}
+      <section className="container">
         {/* condition ? execution when true: execusion when false */}
-      </div>
+        {isLoading ? (
+          <div className="loader">
+            <span className="loader__text">"Loading..."</span>
+          </div>
+        ) : (
+          <div className="movies">
+            {movies.map((movie) => (
+              <Movie //Movie is a component
+                //props are listed below as follows
+                key={movie.id}
+                id={movie.id}
+                year={movie.year}
+                title={movie.title}
+                summary={movie.summary}
+                poster={movie.medium_cover_image}
+              />
+            ))}
+          </div>
+        )}
+      </section>
     );
   }
 }
