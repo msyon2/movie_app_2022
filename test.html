@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>ECMA6 map()</title>
+</head>
+
+<body>
+	<!-- <script>
+		let cats=['땅콩','얼룩','회색'];
+		cats=cats.map(function(value,index){
+		  return value+"밥먹자!!"
+		})
+		//땅콩밥먹자,얼룩밥먹자,회색밥먹자 출력됨
+		//매개변수 value를 추가하여 새 배열로 생성함
+  
+		document.write(cats)
+	  </script> -->
+	<script>
+		/* the difference between map() & for.Each 
+			map: executes & redefines the values in array
+			for.Each: executes the each value in array
+		*/
+		// 배열을 선언합니다.
+		let numbers = [273, 52, 103, 32, 57]
+
+		// 배열의 모든 값을 제곱합니다.
+		numbers = numbers.map(function (value, index, array) {
+			return value * value
+		})
+		
+		// 출력합니다.
+		numbers.forEach(console.log)
+	</script>
+	<script>
+		let teams = ['은교','화연','하나'];
+		teams = teams.map(function (value) {
+			return value + "화이팅!"
+		})
+		document.write(teams)
+	</script>
+</body>
+
+</html>
